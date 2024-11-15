@@ -6,7 +6,12 @@ from py2neo import Graph
 import numpy as np
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 class QueryInput(BaseModel):
     query: str = Field(..., description="User question to process")
@@ -17,9 +22,9 @@ class Response(BaseModel):
 class Neo4jSearchEngine:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4", temperature=0) 
-        self.NEO4J_URI = 'bolt://localhost:7687'
-        self.NEO4J_USERNAME = 'neo4j'
-        self.NEO4J_PASSWORD = '12345678'
+        self.NEO4J_URI = os.getenv('NEO4J_URI')
+        self.NEO4J_USERNAME = os.getenv('NEO4J_USERNAME')
+        self.NEO4J_PASSWORD = os.getenv('NEO4J_PASSWORD')
         self.embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
         self.graph = Graph(self.NEO4J_URI, auth=(self.NEO4J_USERNAME, self.NEO4J_PASSWORD))
 

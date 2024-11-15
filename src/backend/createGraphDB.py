@@ -10,13 +10,18 @@ from langchain_core.documents import Document
 from langchain.text_splitter import SpacyTextSplitter
 from py2neo import Graph, Node
 from scipy.spatial.distance import cosine
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 # Constants
-NEO4J_URI = 'bolt://localhost:7687'
-NEO4J_USERNAME = 'neo4j'
-NEO4J_PASSWORD = '12345678'
+NEO4J_URI = os.getenv('NEO4J_URI')
+NEO4J_USERNAME = os.getenv('NEO4J_USERNAME')
+NEO4J_PASSWORD = os.getenv('NEO4J_PASSWORD')
+
 
 graph = Graph(NEO4J_URI, auth=(NEO4J_USERNAME, NEO4J_PASSWORD))
 # Initialize graph and LLM
