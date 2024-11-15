@@ -9,6 +9,9 @@
 ![Neo4j](https://img.shields.io/badge/Neo4j-008CC1?style=for-the-badge&logo=neo4j&logoColor=white)
 ![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![LangChain](https://img.shields.io/badge/🦜_LangChain-2C2C2C?style=for-the-badge)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 
 An intelligent chatbot system combining Knowledge Graphs with RAG for enhanced contextual understanding.
 
@@ -23,7 +26,7 @@ An intelligent chatbot system combining Knowledge Graphs with RAG for enhanced c
 - [Architecture](#architecture)
   - [Frontend](#frontend)
   - [Backend](#backend)
-  - [Knowledge Graph](#knowledge-graph)
+  - [Knowledge Graph Structure 🔍](#knowledge-graph-structure-🔍)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -44,6 +47,7 @@ GraphRAG enhances traditional chatbots by leveraging Knowledge Graphs, combining
 - 🎯 **Contextual Awareness**: Maintains context through graph relationships
 - 💨 **Real-time Processing**: Fast response generation with optimized retrieval
 - 🎨 **Modern UI**: Sleek interface built with Next.js and TailwindCSS
+
 
 ## Architecture
 
@@ -144,16 +148,31 @@ For a detailed understanding of the system architecture, data flow, and componen
 - **Embedding**: OpenAI Ada-002 for text embeddings
 - **Database**: Neo4j for graph storage and querying
 
-### Knowledge Graph
-- **Database**: Neo4j Graph Database
-- **Node Types**: 
-  - Documents
-  - Artists
-  - Sales Agents
-- **Relationships**: 
-  - MENTIONS
-  - MANAGED
-  - RELATED_TO
+### Knowledge Graph Structure 🔍
+
+<div align="center">
+  <img src="graph.svg" alt="GraphDB Architecture" width="800"/>
+  <p align="center">
+    <em>Visual representation of the Neo4j Knowledge Graph structure showing entity relationships</em>
+  </p>
+</div>
+
+### Node Types
+- **🎨 Artists**: Music artists with revenue data and embeddings
+- **👥 Sales Agents**: Representatives managing artists
+- **📄 Documents**: Embedded text chunks from documentation
+
+### Relationships
+- `MANAGED`: Links sales agents to their managed artists
+- `MENTIONS`: Connects documents to referenced entities
+- `RELATED_TO`: Creates semantic connections between similar documents
+
+The graph structure enables:
+- Contextual information retrieval
+- Relationship-aware querying
+- Semantic similarity search
+- Multi-hop reasoning capabilities
+
 
 ## Installation
 
